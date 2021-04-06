@@ -1,0 +1,264 @@
+<html>
+
+<head>
+  <title>Carousel Example</title>
+
+  <script async src="https://cdn.ampproject.org/amp-story-player-v0.js"></script>
+  <link href="https://cdn.ampproject.org/amp-story-player-v0.css" rel="stylesheet" type="text/css">
+ 
+   <style type="text/css">
+     body h1 {
+  text-align: center;
+  font-weight: 800;
+  color: white;
+  font-family: Arial;
+}
+
+body {
+  background-color: rgba(29, 30, 34);
+}
+
+.viewport {
+  border-radius: 10px;
+  padding: 15px;
+  margin: auto;
+  width: 360px;
+  height: 1500px;
+  background-color: lightblue;
+}
+
+amp-story-player {
+  width: 360px;
+  height: 600px;
+}
+
+.rectangular-entry-point {
+  width: 100%;
+  position: relative;
+}
+
+.entry-points {
+  width: 100%;
+  display: flex;
+  overflow-x: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  padding-bottom: 10px;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.entry-point-card-img {
+  cursor: pointer;
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.circular-entry-point {
+  border-radius: 100%;
+}
+
+.entry-point-hover {
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.entry-point-arrow {
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-size: 28px;
+  border: 0px;
+  background-color: #ffffff;
+  outline: transparent;
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  border-radius: 50%;
+  padding: 0px;
+  box-shadow: 0px 0px 10px rgba(60, 64, 67, 0.3);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.entry-point-left-arrow {
+  background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="18px" height="18px"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>');
+}
+
+.entry-point-right-arrow {
+  right: 0px;
+  background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="18px" height="18px"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>');
+}
+
+.entry-point-card-container{
+  position: relative;
+  transition: transform 0.3s;
+  padding-right: 6px;
+}
+
+.card-headline-container {
+  position: absolute;
+  bottom: 2px;
+  text-align: left;
+  padding: 0px 3px;
+
+}
+
+.entry-point-card-headline {
+  color: #FFF;
+  font-weight: bold;
+  padding: 0px 4px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  background-color: #a49dde;
+  border-radius: 3px;
+  line-height: 1.5em;
+  text-indent: 0;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.entry-point-card-logo {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  margin-left: 5px;
+  color: #fff;
+  top: 10px;
+}
+   </style>
+   <script type="text/javascript">
+     let stories;
+let cards;
+let scrollX = 0;
+let maxScroll;
+let storyCount = 0;
+let init = false;
+
+const player = document.body.querySelector('amp-story-player');
+
+player.addEventListener('ready', () => {
+  initializeCarousel();
+})
+
+if (player.isReady) {
+  initializeCarousel();
+}
+
+function initializeCarousel() {
+  if (init) return;
+  init = true;
+  
+  stories = player.getStories();
+  initializeCards();
+  initializeArrows();
+}
+
+
+
+function initializeCards() {
+  cards = document.querySelectorAll('.entry-point-card-container');
+  cards.forEach((card, idx) => {
+    card.addEventListener('click', () => {
+      player.show(stories[idx].href);
+    });
+  });
+}
+
+function initializeArrows() {
+  const scrollContainer = document.querySelector('.entry-points');
+  const leftArrow = document.querySelector('.entry-point-left-arrow');
+  const rightArrow = document.querySelector('.entry-point-right-arrow');
+  
+  maxScroll = scrollContainer.clientWidth - cards.length * cards[0].clientWidth;
+  if (maxScroll >= 0) {
+    return;
+  }
+  
+  addClickListener(leftArrow, true);
+  addClickListener(rightArrow);
+}
+
+function addClickListener(button, isLeft = false) {
+  button.addEventListener('click', () => {
+    scrollX = isLeft
+      ? Math.min(0, scrollX + 185)
+      : Math.max(maxScroll, scrollX - 185);
+console.log({isLeft},{scrollX})
+     for (let i = 0; i < cards.length; i++) {
+       cards[i].style['transform'] = `translateX(${scrollX}px)`;
+     }
+  });
+}
+   </script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&amp;display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+</head>
+
+<body>
+  <div class="viewport">
+    <h1> Card Carousel </h1>
+    <div class="rectangular-entry-point">
+      <div class="entry-points">
+        <div class="entry-point-card-container">
+          <img class="entry-point-card-logo" src="https://wp.stories.google/stories/intro-to-web-stories-storytime/assets/Logo-web-stories-circle.png">
+          <h3 class="card-headline-container">
+            <span class="entry-point-card-headline">Q&A with Zoe Newman 🤩</span>
+          </h3>
+          <img
+            src="https://ampfest-story-player-demo.web.app/examples/amp-story/AMPFestPlayerDemo/s1/assets/2.jpeg"
+            class="entry-point-card-img"
+            width="177"
+            height="233">
+          </div>
+        <div class="entry-point-card-container">
+          <img class="entry-point-card-logo" src="https://wp.stories.google/stories/intro-to-web-stories-storytime/assets/Logo-web-stories-circle.png">
+          <h3 class="card-headline-container">
+            <span class="entry-point-card-headline">New York City 24h Travel Guide</span>
+          </h3>
+          <img
+            src="https://images.pexels.com/photos/378570/pexels-photo-378570.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260"
+            class="entry-point-card-img"
+            width="177"
+            height="233">
+        </div>
+        <div class="entry-point-card-container">
+          <img class="entry-point-card-logo" src="https://wp.stories.google/stories/intro-to-web-stories-storytime/assets/Logo-web-stories-circle.png">
+          <h3 class="card-headline-container">
+            <span class="entry-point-card-headline">Jellyfish the Next King of the Sea</span>
+          </h3>
+          <img
+            src="https://images.pexels.com/photos/67826/jellyfish-luminous-jellyfish-light-light-phenomenon-67826.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260"
+            class="entry-point-card-img"
+            width="177"
+            height="233">
+        </div>
+        <div class="entry-point-card-container">
+          <img class="entry-point-card-logo" src="https://wp.stories.google/stories/intro-to-web-stories-storytime/assets/Logo-web-stories-circle.png">
+          <h3 class="card-headline-container">
+            <span class="entry-point-card-headline">Spark a Passion for Reading</span>
+          </h3>
+          <img
+            src="https://images.pexels.com/photos/373465/pexels-photo-373465.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260"
+            class="entry-point-card-img"
+            width="177"
+            height="233">
+        </div>
+      </div>
+      <button class="entry-point-left-arrow entry-point-arrow"></button>
+      <button class="entry-point-right-arrow entry-point-arrow"></button>
+    </div>
+
+    <amp-story-player>
+      <a href="https://ampfest-story-player-demo.web.app/examples/amp-story/AMPFestPlayerDemo/s1"></a>
+      <a href="https://ampfest-story-player-demo.web.app/examples/amp-story/AMPFestPlayerDemo/s2"></a>
+      <a href="https://ampfest-story-player-demo.web.app/examples/amp-story/AMPFestPlayerDemo/s3"></a>
+      <a href="https://ampfest-story-player-demo.web.app/examples/amp-story/AMPFestPlayerDemo/s4"></a>
+    </amp-story-player>
+  </div>
+</body>
+
+</html>
