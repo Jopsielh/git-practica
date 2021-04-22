@@ -1,0 +1,67 @@
+/* 
+body {
+	background: rgb(131,58,180);
+	background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,0.2805497198879552) 50%, rgba(255,66,24,1) 100%);
+}
+*/
+body {
+	background: url(https://marketplace.canva.com/EAEK4VYEiKs/1/0/800w/canva-arco%C3%ADris-gradiente-oscuro-violeta-fondo-virtual-para-zoom-qXbMIusqHJQ.jpg);
+}
+
+footer {
+	background-color: red;
+}
+
+.navegacion {
+	text-align: right;
+}
+
+.foto-jopsi {
+	border-radius: 50%;
+	border-width: 5px;
+	border-color: blue;
+	border-style: solid;
+	width: 300px;
+	margin: 20px 10px 20px 100px;
+	padding: 10px 10px 10px 10px;
+
+}
+	
+.fotico-dos {
+	border-radius: 50%;
+	border-width: 5px;
+	border-color: red;
+	border-style: solid;
+	width: 300px;
+	margin: 20px 10px 20px 50px;
+}
+
+.fotico-tres {
+	border-radius: 50%;
+	border-width: 5px;
+	border-color: orange;
+	border-style: solid;
+	width: 300px;
+	margin: 20px 10px 20px 50px;
+}
+	
+
+
+p {
+	font-family: monospace;
+	background-color: lightblue;
+}
+
+/* 
+[type:'checkbox'] {
+	margin-top: 10px;
+	margin-bottom: 10px; 
+}/*
+
+.parrafo-verde {
+	background-color: silver;
+	border-width: 1px;
+	border-style: solid;
+	border-color: orange;
+	background-image: https://1.bp.blogspot.com/-Uv-BQygvclk/WT1ezwMMf9I/AAAAAAAAL0k/S01dhqtCGXkI-DvQvZYzr5EtHWOuA84rgCLcB/s1600/14632922_1877070065846140_6694260580007523662_n.jpg
+}
