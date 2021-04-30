@@ -4,16 +4,90 @@ body {
 	background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,0.2805497198879552) 50%, rgba(255,66,24,1) 100%);
 }
 */
+
+
 body {
-	background: url(https://marketplace.canva.com/EAEK4VYEiKs/1/0/800w/canva-arco%C3%ADris-gradiente-oscuro-violeta-fondo-virtual-para-zoom-qXbMIusqHJQ.jpg);
+	background: url(https://fondosmil.com/fondo/6454.jpg);
+	background-size: cover;
 }
 
-footer {
-	background-color: red;
+#footer {
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+	left: 0px;
+	background-color: rgba(0, 0, 66, 0.7);
+	
+
 }
 
-.navegacion {
-	text-align: right;
+#footer a {
+	color: white;
+	text-shadow: 1px 1px grey;
+	position: relative;
+	left: 5px;
+}
+
+.cabecera {
+	text-align: left;
+	background-color: rgba(12, 111, 255, 0.2);
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+}
+
+.cabecera h1 {
+	position: relative;
+	margin-left: 20px;
+	font-family: gugi, cursive;
+	color: lightgrey;
+	text-shadow: 2px 2px black;
+}
+
+.cabecera h1:hover{
+	color: rgba(255, 99, 71, 0.4);
+
+}
+
+.navegacion li {
+	display: inline;
+	margin-left: 5px; 
+	font-family: monospace;
+	text-transform: uppercase;
+}
+
+nav {
+	background-color: rgba(0, 89, 192, 0.4);
+	padding-bottom: 2px;
+	  }
+	
+
+li a {
+	color: white;
+	position: relative;
+	top: 5px;
+	
+}
+
+li a:hover {
+	color: rgba(255, 99, 71, 1);
+}
+
+.circulos {
+	position: relative;
+	top: 80px;
+
+}
+
+#parrafos {
+	position: relative;
+	top: 600px;
+	
+}
+
+img:hover {
+	opacity: 0.5;
 }
 
 .foto-jopsi {
@@ -22,7 +96,7 @@ footer {
 	border-color: blue;
 	border-style: solid;
 	width: 300px;
-	margin: 20px 10px 20px 100px;
+	margin: 20px 10px 20px 200px;
 	padding: 10px 10px 10px 10px;
 
 }
@@ -34,18 +108,28 @@ footer {
 	border-style: solid;
 	width: 300px;
 	margin: 20px 10px 20px 50px;
+	padding: 0px 5px 0px 0px;
+
 }
 
 .fotico-tres {
 	border-radius: 50%;
 	border-width: 5px;
-	border-color: orange;
+	border-color: green;
+	border-style: solid;
+	width: 300px;
+	margin: 20px 10px 20px 50px;
+	
+}
+	
+.fotico-cuatro {
+	border-radius: 50%;
+	border-width: 5px;
+	border-color: lightblue;
 	border-style: solid;
 	width: 300px;
 	margin: 20px 10px 20px 50px;
 }
-	
-
 
 p {
 	font-family: monospace;
